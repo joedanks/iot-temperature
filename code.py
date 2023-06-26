@@ -3,6 +3,7 @@ import alarm
 import digitalio
 import neopixel
 import ssl
+import busio
 import board
 import wifi
 import socketpool
@@ -61,7 +62,7 @@ def sendMetrics(metrics):
     print("Data sent!")
 
 
-sht = adafruit_sht4x.SHT4x(board.I2C())
+sht = adafruit_sht4x.SHT4x(busio.I2C(board.SCL1, board.SDA1))
 sht.mode = adafruit_sht4x.Mode.NOHEAT_LOWPRECISION
 
 temperature, relative_humidity = sht.measurements
